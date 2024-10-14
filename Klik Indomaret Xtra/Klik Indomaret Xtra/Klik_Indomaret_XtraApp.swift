@@ -10,11 +10,15 @@ import SwiftUI
 @main
 struct Klik_Indomaret_XtraApp: App {
     let persistenceController = PersistenceController.shared
+    @StateObject private var categoryViewModel = CategoryViewModel()
+    @StateObject private var productViewModel = ProductViewModel()
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            ProductListView()
+                .environmentObject(categoryViewModel)
+                .environmentObject(productViewModel)
+//            ContentView()
         }
     }
 }
